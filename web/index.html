@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sofía Napolitani</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- GOOGLE SIGN-IN -->
+    <meta name="google-signin-client_id" content="1050688819859-e7jd6t58p003bujfjf9tk7ovliujgnhh.apps.googleusercontent.com" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="App de fidelización para clientes de Sofía Napolitani" />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        background-color: #fffdfb;
+      }
+
+      .g_id_signin {
+        margin-top: 20px;
+      }
+
+      .title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="title">Iniciar sesión con Google</div>
+
+    <!-- Configuración del cliente -->
+    <div id="g_id_onload"
+         data-client_id="1050688819859-e7jd6t58p003bujfjf9tk7ovliujgnhh.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false">
+    </div>
+
+    <!-- Botón de Google visible -->
+    <div class="g_id_signin"
+         data-type="standard"
+         data-size="large"
+         data-theme="outline"
+         data-text="signin_with"
+         data-shape="rectangular"
+         data-logo_alignment="left">
+    </div>
+
+    <!-- Manejo del token -->
+    <script>
+      function handleCredentialResponse(response) {
+        const token = response.credential;
+        console.log("🟢 Token recibido:", token);
+        window.postMessage({ type: 'google-login', token: token }, '*');
+      }
+    </script>
+
+    <script src="main.dart.js" type="application/javascript"></script>
+  </body>
+</html>
